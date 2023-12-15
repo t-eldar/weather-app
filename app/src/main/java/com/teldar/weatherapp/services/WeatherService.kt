@@ -1,15 +1,13 @@
 package com.teldar.weatherapp.services
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.teldar.weatherapp.R
 import com.teldar.weatherapp.models.WeatherResponse
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import retrofit2.Retrofit
 
-class WeatherService {
+class WeatherService(private val _apiKey: String) {
 
-    private val _apiKey = R.string.weather_api_key
     private val _retrofit: Retrofit
     private val _weatherApiClient: WeatherApiClient
 

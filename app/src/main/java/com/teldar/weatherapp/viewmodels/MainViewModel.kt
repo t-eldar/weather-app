@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.teldar.weatherapp.R
 import com.teldar.weatherapp.models.WeatherResponse
 import com.teldar.weatherapp.services.WeatherService
 import kotlinx.coroutines.launch
@@ -24,9 +25,11 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     var city by mutableStateOf("")
 
+    private val _apiKey =
+        getApplication<Application>().resources.getString(R.string.weather_api_key)
     var weather by mutableStateOf<WeatherResponse?>(null)
 
-    private val _weatherService = WeatherService()
+    private val _weatherService = WeatherService(_apiKey)
 
     fun getWeather() {
         viewModelScope.launch {
